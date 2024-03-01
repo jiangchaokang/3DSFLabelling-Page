@@ -1,0 +1,576 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style type="text/css">
+    body {
+        font-family: "Titillium Web", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1200px;
+    }
+
+
+
+    a:link,
+    a:visited {
+        color: #1F407A;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #1269B0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        text-align: center;
+    }
+
+    h1 {
+        font-weight: 450;
+        line-height: 1.15em;
+    }
+
+    h2 {
+        font-size: 1.75em;
+        font-weight: 200;
+        margin: 16px 0px 4px 0px;
+    }
+
+    h3 {
+        font-weight: 300;
+        font-size: 1.15em;
+    }
+
+    h4 {
+        font-weight: 400;
+        font-size: 1em;
+    }
+
+    .title {
+        padding: 20px 0px 20px 0px;
+    }
+
+    section {
+        margin: 16px 0px 16px 0px;
+        text-align: justify;
+        clear: both;
+        line-height: 1.25em;
+    }
+
+    .author-row {
+        font-size: 18px;
+    }
+
+    .affil-row {
+        font-size: 16px;
+    }
+
+
+    .teaser {
+        max-width: 100%;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .screenshot {
+        width: 256px;
+        border: 1px solid #ddd;
+    }
+
+    .screenshot-el {
+        margin-bottom: 16px;
+    }
+
+    hr {
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ddd;
+        margin: 0;
+    }
+
+    .material-icons {
+        vertical-align: -6px;
+    }
+
+    p {
+        line-height: 1.25em;
+    }
+
+    .caption {
+        font-size: 14px;
+        /*font-style: italic;*/
+        color: #666;
+        text-align: left;
+        margin-top: 6px;
+        margin-bottom: 8px;
+    }
+
+
+    figure {
+        display: block;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #bibtex pre {
+        font-size: 14px;
+        background-color: #eee;
+        padding: 16px;
+    }
+
+
+    .flex-row {
+        display: flex;
+        padding-top: 0px;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        line-height: 1.25em;
+        
+    }
+
+    .paper-btn {
+        position: relative;
+        text-align: center;
+
+        display: block;
+        margin: 30px auto;
+        padding: 8px 8px;
+
+        border-width: 0;
+        outline: none;
+        border-radius: 2px;
+
+        background-color: #2269a0;
+        color: #d5e9ee !important;
+        font-size: 20px;
+        width: 100px;
+        font-weight: 600;
+    }
+
+    .paper-btn:hover {
+        opacity: 0.85;
+    }
+
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+        width: 1000px;
+        text-align:center;
+    }
+
+
+    .col-5 {
+        width: 20%;
+        float: left;
+    }
+
+    .col-3 {
+        width: 33%;
+        float: left;
+    }
+
+    .col-2 {
+        width: 50%;
+        float: left;
+    }
+
+
+    .author-row p {
+        text-align: center;
+        line-height: 0px;
+    }
+
+    .author-row img {
+        width: 40px;      /* 设置头像的宽度 */
+        height: 50px;     /* 设置头像的高度，和宽度相同将形成正方形 */
+        border-radius: 100%; /* 保持头像为圆形 */
+    }
+
+    .author-row,
+    .affil-row {
+        overflow: auto;
+        margin-top: 10px;
+    }
+
+    .glb-row {
+        overflow: auto;
+        margin-top: 20px;
+        width: 1200px;
+    }
+    .centered {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .button_row {
+        display: flex;
+        width: 600px;
+        
+    }
+    .bs {
+        background-color:  rgb(45, 77, 182);
+        border: 1px solid  rgb(195, 195, 195);
+        color: white;
+        width: 120px;
+        height: 40px;
+        font-size: 0.9em;
+        font-weight: 500;
+        margin: 15px;
+        box-shadow: 2px 2px rgb(195, 195, 195), 2px 2px rgb(195, 195, 195), 1px 1px  rgb(195, 195, 195);
+    }
+    .bs:hover {
+    opacity: 0.85;
+    }
+
+</style>
+
+<!-- End : Google Analytics Code -->
+<!-- <script type="text/javascript" src="../js/hidebib.js"></script> -->
+
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,600,400italic,600italic,300,300italic'
+rel='stylesheet' type='text/css'>
+
+<head>
+    <title>3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling</title>
+    <meta property="og:description" content="3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling" />
+    <script src="https://kit.fontawesome.com/6e21e18363.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@chaokangjiang1">
+    <meta name="twitter:title" content="3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://3dsflabelling.github.io/assets/network_architecture.jpg">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6HHDEXF452"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-6HHDEXF452');
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling</h1>
+        </div>
+
+        <div class="centered">
+            <div class="author-row">
+                <div class="col-5 text-center"><a href="https://scholar.google.com/citations?user=6gZ8vloAAAAJ&hl=zh-CN"><img src="assets/author_avatar/Chaokang_Jinag.png">
+                        <p>Chaokang Jiang<sup>1</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a href="https://guangmingw.github.io/"><img src="assets/author_avatar/guangming.png">
+                        <p>Guangming Wang<sup>2</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a
+                        href="https://scholar.google.com/citations?user=j4YXCukAAAAJ&hl=zh-CN"><img
+                            src="assets/author_avatar/Jiuming_Liu.png"><br>
+                        <p>Jiuming Liu<sup>3</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a href="https://irmv.sjtu.edu.cn/wanghesheng"><img
+                            src="assets/author_avatar/hesheng_wang.png"><br>
+                        <p>Hesheng Wang<sup>3</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a href="https://github.com/Ma-Zhuang/"><img src="assets/author_avatar/avatar_scholar.png"><br>
+                        <p>Zhuang Ma<sup>2</sup></p>
+                    </a></div>
+            </div>
+
+            <div class="author-row">
+                <div class="col-5 text-center"><a href="None"><img src="assets/author_avatar/avatar_scholar.png">
+                        <p>Zhenqiang Liu<sup>1</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a href="https://scholar.google.com/citations?user=aJ_Fr4MAAAAJ&hl=en"><img src="assets/author_avatar/ZhuJinLiang.png">
+                        <p>Zhujin Liang<sup>1</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a
+                        href="https://scholar.google.com/citations?user=4gI2kWIAAAAJ&hl=en&oi=ao"><img
+                            src="assets/author_avatar/Shan_Yi.png"><br>
+                        <p>Shan Yi<sup>1</sup></p>
+                    </a></div>
+                <div class="col-5 text-center"><a href="https://scholar.google.com/citations?hl=zh-CN&user=cwstuxoAAAAJ"><img
+                            src="assets/author_avatar/Dalong_Du.png"><br>
+                            <p class="author-name">Dalong Du<sup>1 &#10013;</sup></p>
+                    </a></div>
+                    </a></div>
+            </div>
+
+            <div class="affil-row">
+                <div class="col-3 text-center"><a href="https://www.phigent.ai/#/"><sup>1</sup>PhiGent Robotics</a></div>
+                <div class="col-3 text-center"><a href="https://www.cam.ac.uk/"><sup>2</sup>University of Cambridge</a></div>
+                <div class="col-3 text-center"><a href="https://en.sjtu.edu.cn/"><sup>3</sup>Shanghai Jiao Tong University</a></div>
+            </div>
+        </div>
+        <p></p>
+        
+        <div class="parent" style="display: flex; align-items: center; justify-content: center;">
+            <div class="image-container" style="margin-right: 10px;">
+                <img src="assets/paper_fig/cvpr2024.jpg" alt="cvpr icon" width="250" height="60">
+            </div>
+            <a href="https://arxiv.org/pdf/2402.18146.pdf"><button class="bs" style="margin-left: 10px;"><span class="fa fa-file-pdf-o fa-fw"></span> Paper</button></a>
+            <a href="https://github.com/jiangchaokang/3DSFLabelling"><button class="bs" style="margin-left: 10px;"><span class="fa fa-github fa-fw"></span> Code</button></a>
+            <a href="https://github.com/jiangchaokang/3DSFLabelling/tree/main/Data/"><button class="bs" style="margin-left: 10px;"><span class="fa fa-database fa-fw"></span> Data</button></a>
+        </div>
+        <p></p>
+        <section id="teaser">
+            <a href="assets/paper_fig/network_architecture.pdf">
+                <img class="centered" width="100%" src="assets/paper_fig/network_architecture.jpg">
+            </a>
+            <p class="caption">
+                Figure 1. Automatic pseudo 3D scene flow labeling and model learning. The input comprises 3D anchor boxes, a pair of point clouds, and their corresponding coarse normal vectors. The optimization of motion parameters primarily updates the bounding box parameters, global motion parameters, local motion parameters, and the motion probability of the box. Parameters needed for box updates are inversely adjusted through six objective functions. Once optimized, the motion parameters simulate K types of motion using a global-local data augmentation module. A single source frame point cloud, along with the generated K sets of motion parameters, produces multiple 3D scene flow label candidates. These label candidates serve in guiding the supervised neural network to learn point-wise motion.
+            </p>
+        </section>
+
+        <h2>Abstract</h2>
+        <hr>
+        <div class="flex-row">
+                <div style="width: 50%">
+                    <section id="abstract">
+                        Learning 3D scene flow from LiDAR point clouds presents significant difficulties, including poor generalization from synthetic datasets to real scenes, scarcity of real-world 3D labels, and poor performance on real sparse LiDAR point clouds. We present a novel approach from the perspective of auto-labelling, aiming to generate a large number of 3D scene flow pseudo labels for real-world LiDAR point clouds. Specifically, we employ the assumption of rigid body motion to simulate potential object-level rigid movements in autonomous driving scenarios. By updating different motion attributes for multiple anchor boxes, the rigid motion decomposition is obtained for the whole scene. Furthermore, we developed a novel 3D scene flow data augmentation method for global and local motion. By perfectly synthesizing target point clouds based on augmented motion parameters, we easily obtain lots of 3D scene flow labels in point clouds highly consistent with real scenarios. On multiple real-world datasets including LiDAR KITTI, nuScenes, and Argoverse, our method outperforms all previous supervised and unsupervised methods without requiring manual labelling. Impressively, our method achieves a tenfold reduction in EPE3D metric on the LiDAR KITTI dataset, reducing it from $0.190m$ to a mere $0.008m$ error.
+                    </section>
+                </div>
+                <div style="width: 50%">
+                    <section id="abstract">
+                        <figure style="padding-left: 24px; padding-top: 8px; margin-bottom: 0">
+                            <img width="100%" src="assets/paper_fig/abstract.jpg">
+                            <p class="caption">
+                                The proposed 3D scene flow pseudo-auto-labelling framework. Given point clouds and initial bounding boxes, both global and local motion parameters are iteratively optimized. Diverse motion patterns are augmented by randomly adjusting these motion parameters, thereby creating a diverse and realistic set of motion labels for the training of 3D scene flow estimation models.
+                            </p>
+                        </figure>
+                    </section>
+                </div>
+        </div>
+
+       
+
+
+    <h2>Qualitative results</h2>
+    <hr>
+
+    <section id="qualitative results">
+        Tip: Clicking on the image allows you to view high-definition PDF visualization images.
+    </section>
+    <a href="assets/paper_fig/Visualization_1.pdf">
+        <figure style= margin-bottom: 0"></figure>
+        <img class="centered" width="100%" src="assets/paper_fig/vis1.jpg">
+        <p class="caption">
+            Registration visualization results of our method (GMSF+3DSFlabelling) and baselines on the LiDAR KITTI and Argoverse datasets. The estimated target point cloud $PC_{sw}$ is derived from warping the source point cloud $PC_{S}$ to the target point cloud via 3D scene flow. The larger the overlap between $PC_{sw}$ (blue) and the target point cloud $PC_T$ (green), the higher the predicted accuracy of the scene flow. Local areas are zoomed in for better visibility. Our 3D scene flow estimation notably improves performance.
+        </p>
+    </a>
+
+</div>
+
+    <h3>lidarKITTI - scene flow (Registration visualization)</h3>
+
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; align-items: center; justify-content: space-around; border: 2px solid #3399FF; padding: 10px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(47, 235, 47); font-size: 24px; margin-right: 10px;">●</span> Green points represent the target frame point cloud.
+            </p>
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(255, 236, 239); font-size: 24px; margin-right: 10px;">●</span> Pink points: Source frame point cloud + scene flow &rarr; target frame.
+            </p>
+        </div>
+    </div>
+
+    <div class="glb-row">
+        <div class="col-2 text-center">
+
+            <model-viewer class="centered" alt="Kitti ours" src="assets/glb_flie/Ours_KITTI_num137.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>Ours</h4>
+        </div>
+
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="Kitti FLOT" src="assets/glb_flie/FLOT_KITTI_num137.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT</h4>
+        </div>
+    </div>
+    <h3>lidarKITTI - EPE3D (3D scene flow EPE3D error visualization)</h3>
+    <div align="center">
+        <img src="assets/paper_fig/Error_Map.png" alt="Error Map" width="520" height="26">
+    </div>
+    <div class="glb-row">
+        <div class="col-2 text-center">
+            
+            <model-viewer class="centered" alt="Kitti ours epe" src="assets/glb_flie/Ours_KITTI_Error_num141.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT+3DSFlabelling</h4>
+        </div>
+
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="Kitti ours epe" src="assets/glb_flie/Flot_KITTI_Error_num141.glb"
+                style="width: 95%; height:300px; background-color: #000000" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT</h4>
+        </div>
+        
+    </div>
+
+    <h3>waymoOpen - scene flow (Registration visualization)</h3>
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; align-items: center; justify-content: space-around; border: 2px solid #3399FF; padding: 10px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(47, 235, 47); font-size: 24px; margin-right: 10px;">●</span> Green points represent the target frame point cloud.
+            </p>
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(255, 236, 239); font-size: 24px; margin-right: 10px;">●</span> Pink points: Source frame point cloud + scene flow &rarr; target frame.
+            </p>
+        </div>
+    </div>
+
+    <div class="glb-row centered">
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo flow generalized" src="assets/glb_flie/Ours_Waymo_016.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT+3DSFlabelling</h4>
+        </div>
+
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo flow refined"
+                src="assets/glb_flie/GMSF_Waymo_016.glb"
+                style="width: 95%; height:300px; background-color:#272727" exposure=".8" camera-orbit="180deg 75deg 50%"
+                auto-rotate camera-controls>
+            </model-viewer>
+            <h4>GMSF (Trained on Waymo (with SceneFlow GT)</h4>
+        </div>
+    </div>
+
+    <h3>waymoOpen - scene flow (3D scene flow EPE3D error visualization)</h3>
+    <div align="center">
+        <img src="assets/paper_fig/Error_Map.png" alt="Error Map" width="520" height="26">
+    </div>
+    <div class="glb-row centered">
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo flow generalized" src="assets/glb_flie/Ours_Error_waymo191.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT+3DSFlabelling</h4>
+        </div>
+
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo flow refined"
+                src="assets/glb_flie/GMSF_Error_waymo191.glb"
+                style="width: 95%; height:300px; background-color:#272727" exposure=".8" camera-orbit="180deg 75deg 50%"
+                auto-rotate camera-controls>
+            </model-viewer>
+            <h4>GMSF (Trained on Waymo (with SceneFlow GT)</h4>
+        </div>
+        
+    </div>
+
+    <h3>Argoverse - scene flow (Registration visualization)</h3>
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; align-items: center; justify-content: space-around; border: 2px solid #3399FF; padding: 10px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(47, 235, 47); font-size: 24px; margin-right: 10px;">●</span> Green points represent the target frame point cloud.
+            </p>
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(255, 236, 239); font-size: 24px; margin-right: 10px;">●</span> Pink points: Source frame point cloud + scene flow &rarr; target frame.
+            </p>
+        </div>
+    </div>
+
+    <div class="glb-row centered">
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo clusters ours" src="assets/glb_flie/Ours_argo005.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT+3DSFlabelling</h4>
+        </div>
+
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo ground truth clusters"
+                src="assets/glb_flie/MSBRN_argo005.glb"
+                style="width: 95%; height:300px; background-color:#272727" exposure=".8" camera-orbit="180deg 75deg 50%"
+                auto-rotate camera-controls>
+            </model-viewer>
+            <h4>MSBRN</h4>
+        </div>
+    </div>
+
+    <h3>nuScenes - scene flow (Registration visualization)</h3>
+    
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; align-items: center; justify-content: space-around; border: 2px solid #3399FF; padding: 10px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(47, 235, 47); font-size: 24px; margin-right: 10px;">●</span> Green points represent the target frame point cloud.
+            </p>
+            <p style="margin: 0; display: flex; align-items: center;">
+                <span style="color: rgb(255, 236, 239); font-size: 24px; margin-right: 10px;">●</span> Pink points: Source frame point cloud + scene flow &rarr; target frame.
+            </p>
+        </div>
+    </div>
+
+    <div class="glb-row centered">
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo clusters ours" src="assets/glb_flie/Ours_nus296.glb"
+                style="width: 95%; height:300px; background-color: #272727" exposure=".8"
+                camera-orbit="180deg 75deg 50%" auto-rotate camera-controls>
+            </model-viewer>
+            <h4>FLOT+3DSFlabelling</h4>
+        </div>
+
+        <div class="col-2 text-center">
+            <model-viewer class="centered" alt="waymo ground truth clusters"
+                src="assets/glb_flie/MSBRN_nus296.glb"
+                style="width: 95%; height:300px; background-color:#272727" exposure=".8" camera-orbit="180deg 75deg 50%"
+                auto-rotate camera-controls>
+            </model-viewer>
+            <h4>MSBRN</h4>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h2>Citation</h2>
+            <hr>
+        <section id="bibtex">
+            <pre><code>@misc{jiang20243dsflabelling,
+                title={3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling}, 
+                author={Chaokang Jiang and Guangming Wang and Jiuming Liu and Hesheng Wang and Zhuang Ma 
+                and Zhenqiang Liu and Zhujin Liang and Yi Shan and Dalong Du},
+                year={2024},
+                eprint={2402.18146},
+                archivePrefix={arXiv},
+                primaryClass={cs.CV}
+        }</code></pre>
+        </section>
+
+    </div>
+</body>
+
+</html>
