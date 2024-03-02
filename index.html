@@ -107,12 +107,13 @@
     }
 
     .caption {
-        font-size: 14px;
-        /*font-style: italic;*/
-        color: #666;
-        text-align: left;
-        margin-top: 6px;
-        margin-bottom: 8px;
+    font-size: 14px;
+    /*font-style: italic;*/
+    color: #666;
+    text-align: justify;
+    max-width: 92%;
+    margin: auto;
+    display: block;
     }
 
 
@@ -237,6 +238,54 @@
     opacity: 0.85;
     }
 
+    .video-frame {
+    border: 5px solid #625727;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(242, 173, 68, 0.2);
+    margin: 10px auto; /* Updated this line */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 78%; /* You can adjust this if needed */
+    height: auto;
+}
+
+  .video-title {
+    background: #2c3e50;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+    width: 100%; /* Ensure the title extends the full width of the frame */
+    text-align: center;
+  }
+
+  .video-gallery {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  .video-container {
+    flex: 1;
+    min-width: 300px; /* Minimum width for each video container */
+  }
+  .video-title.specific-title {
+    background: #ffffff;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #4245de;
+  }
+  video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: for shadow effect */
+  }
+
 </style>
 
 <!-- End : Google Analytics Code -->
@@ -291,7 +340,7 @@ rel='stylesheet' type='text/css'>
                         <p>Hesheng Wang<sup>3</sup></p>
                     </a></div>
                 <div class="col-5 text-center"><a href="https://github.com/Ma-Zhuang/"><img src="assets/author_avatar/avatar_scholar.png"><br>
-                        <p>Zhuang Ma<sup>2</sup></p>
+                        <p>Zhuang Ma<sup>1</sup></p>
                     </a></div>
             </div>
 
@@ -333,7 +382,7 @@ rel='stylesheet' type='text/css'>
         <p></p>
         <section id="teaser">
             <a href="assets/paper_fig/network_architecture.pdf">
-                <img class="centered" width="100%" src="assets/paper_fig/network_architecture.jpg">
+                <img class="centered" width="92%" src="assets/paper_fig/network_architecture.jpg">
             </a>
             <p class="caption">
                 Figure 1. Automatic pseudo 3D scene flow labeling and model learning. The input comprises 3D anchor boxes, a pair of point clouds, and their corresponding coarse normal vectors. The optimization of motion parameters primarily updates the bounding box parameters, global motion parameters, local motion parameters, and the motion probability of the box. Parameters needed for box updates are inversely adjusted through six objective functions. Once optimized, the motion parameters simulate K types of motion using a global-local data augmentation module. A single source frame point cloud, along with the generated K sets of motion parameters, produces multiple 3D scene flow label candidates. These label candidates serve in guiding the supervised neural network to learn point-wise motion.
@@ -351,7 +400,7 @@ rel='stylesheet' type='text/css'>
                 <div style="width: 50%">
                     <section id="abstract">
                         <figure style="padding-left: 24px; padding-top: 8px; margin-bottom: 0">
-                            <img width="100%" src="assets/paper_fig/abstract.jpg">
+                            <img width="98%" src="assets/paper_fig/abstract.jpg">
                             <p class="caption">
                                 The proposed 3D scene flow pseudo-auto-labelling framework. Given point clouds and initial bounding boxes, both global and local motion parameters are iteratively optimized. Diverse motion patterns are augmented by randomly adjusting these motion parameters, thereby creating a diverse and realistic set of motion labels for the training of 3D scene flow estimation models.
                             </p>
@@ -366,15 +415,16 @@ rel='stylesheet' type='text/css'>
     <h2>Qualitative results</h2>
     <hr>
 
-    <section id="qualitative results">
+    <section id="qualitative results" class="text-center">
         Tip: Clicking on the image allows you to view high-definition PDF visualization images.
     </section>
     <a href="assets/paper_fig/Visualization_1.pdf">
-        <figure style= margin-bottom: 0"></figure>
-        <img class="centered" width="100%" src="assets/paper_fig/vis1.jpg">
-        <p class="caption">
-            Registration visualization results of our method (GMSF+3DSFlabelling) and baselines on the LiDAR KITTI and Argoverse datasets. The estimated target point cloud $PC_{sw}$ is derived from warping the source point cloud $PC_{S}$ to the target point cloud via 3D scene flow. The larger the overlap between $PC_{sw}$ (blue) and the target point cloud $PC_T$ (green), the higher the predicted accuracy of the scene flow. Local areas are zoomed in for better visibility. Our 3D scene flow estimation notably improves performance.
-        </p>
+        <figure style="margin-bottom: 0;">
+            <img class="centered" width="92%" src="assets/paper_fig/vis1.jpg" alt="Visualization">
+            <figcaption class="caption">
+                Registration visualization results of our method (GMSF+3DSFlabelling) and baselines on the LiDAR KITTI and Argoverse datasets. The estimated target point cloud $PC_{sw}$ is derived from warping the source point cloud $PC_{S}$ to the target point cloud via 3D scene flow. The larger the overlap between $PC_{sw}$ (blue) and the target point cloud $PC_T$ (green), the higher the predicted accuracy of the scene flow. Local areas are zoomed in for better visibility. Our 3D scene flow estimation notably improves performance.
+            </figcaption>
+        </figure>
     </a>
 
 </div>
@@ -434,7 +484,7 @@ rel='stylesheet' type='text/css'>
         
     </div>
 
-    <h3>waymoOpen - scene flow (Registration visualization)</h3>
+    <h3>WaymoOpen - scene flow (Registration visualization)</h3>
     
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="display: flex; align-items: center; justify-content: space-around; border: 2px solid #3399FF; padding: 10px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -554,19 +604,58 @@ rel='stylesheet' type='text/css'>
         </div>
     </div>
 
+    <div class="video-frame">
+        <div class="video-title">Visual Comparison of the Predicted Target Frames (FLOT and FLoT+3DSELabelling)
+            </div>
+        <video controls>
+          <source src="assets/video/FLOT_compare.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+    </div>
+
+    
+    <div class="video-gallery">
+  
+        <div class="video-container">
+          <div class="video-title specific-title">Global Motion Augmentation</div>
+          <video controls>
+            <source src="assets/video/Global.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      
+        <div class="video-container">
+          <div class="video-title specific-title">Local Motion Augmentation</div>
+          <video controls>
+            <source src="assets/video/Local.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      
+        <div class="video-container">
+          <div class="video-title specific-title">Global-Local Motion Augmentation</div>
+          <video controls>
+            <source src="assets/video/Globel_Local.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      
+      </div>
+      
+
     <div class="container">
 
         <h2>Citation</h2>
             <hr>
         <section id="bibtex">
             <pre><code>@misc{jiang20243dsflabelling,
-                title={3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling}, 
-                author={Chaokang Jiang and Guangming Wang and Jiuming Liu and Hesheng Wang and Zhuang Ma 
-                and Zhenqiang Liu and Zhujin Liang and Yi Shan and Dalong Du},
-                year={2024},
-                eprint={2402.18146},
-                archivePrefix={arXiv},
-                primaryClass={cs.CV}
+            title={3DSFLabelling: Boosting 3D Scene Flow Estimation by Pseudo Auto-labelling}, 
+            author={Chaokang Jiang and Guangming Wang and Jiuming Liu and Hesheng Wang and Zhuang Ma 
+            and Zhenqiang Liu and Zhujin Liang and Yi Shan and Dalong Du},
+            year={2024},
+            eprint={2402.18146},
+            archivePrefix={arXiv},
+            primaryClass={cs.CV}
         }</code></pre>
         </section>
 
